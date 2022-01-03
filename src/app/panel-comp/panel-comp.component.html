@@ -1,0 +1,26 @@
+<!-- Bootstrap funciona via classes -->
+<section class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-progress></app-progress>
+      </div>
+      <div class="col-sm-6">
+          <app-attempts></app-attempts>
+      </div>
+      <div class="row">
+        <p>Traduza a frase: <span style="border: 1px solid grey; padding: 0.3em;">{{mockecPhrases[0].phraseEnglish}}</span></p>
+        <div class="input-group" style="margin: 0.5em;">
+          <textarea class="form-control" aria-label="Resposta" rows="1"></textarea>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary">Enviar Resposta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
