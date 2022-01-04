@@ -1,19 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Heart } from '../shared/heart.model';
 
 @Component({
   selector: 'app-attempts',
   templateUrl: './attempts.component.html',
   styleUrls: ['./attempts.component.sass']
 })
-export class AttemptsComponent implements OnInit {
-  public fullHeartSrc: string = 'https://cdn3.iconfinder.com/data/icons/retro-game-items/100/retro-11-512.png'
-  public fullHeartAltText: string = 'full-heart-icon'
-  public emptyHeartSrc: string = 'https://cdn3.iconfinder.com/data/icons/retro-game-items/100/retro-12-512.png'
-  public emptyHeartAltText: string = 'empty-heart-icon'
+export class AttemptsComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  @Input() public totalHearts!: number
 
-  ngOnInit(): void {
+  @Input() public remainingAttempts!: number
+
+  public allHearts: Array<Heart> = [];
+
+  constructor() {
   }
 
+  ngOnInit(): void {
+    this.allHearts = Array.from({ length: this.totalHearts }, () => new Heart(true))
+    this.remainingAttempts = this.totalHearts
+  }
+
+  ngOnChanges(): void {
+    if (this.allHearts.length > 0 && this.remainingAttempts !== this.allHearts.length) {
+      try {
+        let index = this.allHearts.length - this.remainingAttempts;
+        this.allHearts[index - 1].fullOrNot = false
+        
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
+  }
 }

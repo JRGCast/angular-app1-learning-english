@@ -1,10 +1,13 @@
 <div class="container">
   <div class="d-flex justify-content-end">
-    <img [src]="fullHeartSrc"
+    <!-- Vamos substituir esse hardcoded:
+    <img [src]=""
       [alt]="">
-    <img [src]="fullHeartSrc"
+    <img [src]=""
       [alt]="">
-    <img [src]="fullHeartSrc"
+    <img [src]=""
       [alt]="">
+    Por uma estrutura de repetição Angular, o ngfor: -->
+    <img *ngFor="let heart of allHearts" [src]="heart.showHeart().currUrl" [alt]="heart.showHeart().currAltTxt">
   </div>
 </div>

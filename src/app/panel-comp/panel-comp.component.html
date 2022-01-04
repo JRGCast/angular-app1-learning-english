@@ -3,20 +3,24 @@
   <div class="jumbotron">
     <div class="row">
       <div class="col-sm-6">
-        <app-progress></app-progress>
+        <!-- Aqui é onde temos o @Input do componente progress (filho) em ação
+        no caso o que vai em colchetes é o atributo do componente filho, e o valor é dado pelo componente pai:
+      theProgress é do componente progress -->
+        <app-progress [theProgress]="currProgress"></app-progress>
       </div>
       <div class="col-sm-6">
-          <app-attempts></app-attempts>
+        <app-attempts [totalHearts]="totalAttempts" [remainingAttempts]="remainingAttempts"></app-attempts>
       </div>
       <div class="row">
-        <p>Traduza a frase: <span style="border: 1px solid grey; padding: 0.3em;">{{mockecPhrases[0].phraseEnglish}}</span></p>
+        <p>Traduza a frase: <span style="border: 1px solid grey; padding: 0.3em;">{{currEnPhrase}}</span></p>
         <div class="input-group" style="margin: 0.5em;">
-          <textarea class="form-control" aria-label="Resposta" rows="1"></textarea>
+          <input class="form-control" aria-label="Resposta" rows="1" [value]="currAnswer" (input)="getAnswer($event)"
+            (keydown.enter)="compareAnswer()"/>
         </div>
         <div class="row">
           <div class="col">
             <div class="d-flex justify-content-end">
-              <button class="btn btn-primary">Enviar Resposta</button>
+              <button class="btn btn-primary" (click)="compareAnswer()">Enviar Resposta</button>
             </div>
           </div>
         </div>

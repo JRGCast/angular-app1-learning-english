@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'learning-angular';
+  public gameOn: boolean = true
+  public gameFinishedPhrase: string = ''
+  constructor() { }
+
+  public redoGame(): void {
+    this.gameOn = true
+    this.gameFinishedPhrase = ''
+  }
+
+  public finishGameApp(victoryOrDefeat: string): void {
+    this.gameFinishedPhrase = victoryOrDefeat
+    this.gameOn = false
+  }
 }

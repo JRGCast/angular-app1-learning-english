@@ -1,6 +1,28 @@
 <!-- <app-date-component></app-date-component> -->
 <app-topBar></app-topBar>
-<app-panel-comp></app-panel-comp>
+<section *ngIf="gameOn else finished">
+  <app-panel-comp (finishGamePanel)="finishGameApp($event)"></app-panel-comp>
+</section>
+<ng-template #finished>
+  <div class="container">
+    <div class="row">
+      <div *ngIf="gameFinishedPhrase === 'Victorious' else defeated">
+        <div style="text-align: center;" class="col">
+          <h1>GAME FINISHED</h1>
+          <p style="color: green;">You were {{gameFinishedPhrase}}! =)</p>
+          <button class="btn btn-primary" (click)="redoGame()">Jogar novamente?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #defeated>
+  <div style="text-align: center;" class="col">
+    <h1>GAME FINISHED</h1>
+    <p style="color: red;">You were {{gameFinishedPhrase}}! =(</p>
+    <button class="btn btn-primary" (click)="redoGame()">Jogar novamente?</button>
+  </div>
+</ng-template>
 <section>
   <div class='app-learning-component'></div>
 </section>
