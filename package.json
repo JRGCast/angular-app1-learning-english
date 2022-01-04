@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "server": "npx http-server ./dist/learning-angular",
+    "local": "npx http-server ./dist/learning-angular -c-1 -p 8800"
   },
   "private": true,
   "dependencies": {
